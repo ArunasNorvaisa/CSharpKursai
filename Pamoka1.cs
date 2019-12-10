@@ -84,11 +84,11 @@ namespace CSharpKursai
           Console.WriteLine($"{z} yra didesnis už {x} arba {y} arba patenka į rėžius 5-10");
         }
         //Pagrindinė sąlyga:
-        if (x > y && x > z)
+        if (x >= y && x >= z)
         {
           return "Didžiausias skaičius: " + x;
         }
-        if (y > x && y > z)
+        if (y >= z)
         {
           return "Didžiausias skaičius: " + y;
         }
