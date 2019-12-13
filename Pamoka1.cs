@@ -4,7 +4,7 @@ namespace CSharpKursai
 {
   class Pamoka1
   {
-    static void Main()
+    private static void Main()
     {
       float myFloat = 12.5f;
       int myInt = -100;
