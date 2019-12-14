@@ -1,3 +1,5 @@
+using System;
+
 namespace CSharpKursai
 {
   public class Program
@@ -15,12 +17,13 @@ namespace CSharpKursai
       Pamoka3.Meniu();
       Pamoka3.KasTreciasSkaicius(34);
       Pamoka3.Kvadratai();
-      Pamoka3.DaliniuSuma(3434);
+      Console.WriteLine(Pamoka3.DaliniuSuma(3434));
       Pamoka3.Fibonacci(23);
       Pamoka3.SumaIki1000();
       Pamoka3.SumaIki1000Papildymas1();
       Pamoka3.SumaIki1000Papildymas2();
       Pamoka3.SumaIki1000Pakeista();
+      Console.WriteLine(Pamoka3.Challenge.Variantas1());
       Pamoka3.AtsitiktiniaiSkaiciai.AtspekSkaiciu();
     }
   }

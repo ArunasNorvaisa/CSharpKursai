@@ -4,7 +4,7 @@ namespace CSharpKursai
 {
   class Pamoka1
   {
-    float myFloat = 12.5f;
+    /*float myFloat = 12.5f;
     int myInt = -100;
     char myChar = 'a';
     string myString = "uzduotis";
@@ -21,7 +21,7 @@ namespace CSharpKursai
     Console.WriteLine("Įvestas vardas: " + vardas);
     Console.WriteLine("Įvesta pavardė: " + pavarde);
     Console.WriteLine("Įvestas amžius: " + amzius);
-    Console.WriteLine("Įvestas ūgis: " + ugis);
+    Console.WriteLine("Įvestas ūgis: " + ugis);*/
 
     public static void ApskritimoIlgisPlotas (double spindulys)
     {
@@ -87,6 +87,6 @@ namespace CSharpKursai
         return "Didžiausias skaičius: " + y;
       }
       return "Didžiausias skaičius: " + z;
-    };
+    }
   }
 }

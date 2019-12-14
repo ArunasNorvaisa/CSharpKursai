@@ -1,48 +1,61 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Channels;
 
 namespace CSharpKursai
 {
-  public class Pamoka3
+  public static class Pamoka3
   {
+    
+    private static int Pow(this int bas, int exp)
+    {
+      return Enumerable
+        .Repeat(bas, exp)
+        .Aggregate(1, (a, b) => a * b);
+    }
     public static void Meniu()
     {
-      System.Console.WriteLine("Meniu:\n 1.Kava\n 2. Arbata\n 3.Vanduo\nPasirinkite:");
-      int number;
-      do
+      string[] gerimai = {"Kava", "Arbata", "Vanduo"};
+      Console.WriteLine("Meniu. Pasirinkite vieną:");
+      for (int i = 0; i < gerimai.Length; i++)
       {
-        number = int.Parse(Console.ReadLine());
-        if (number < 1 || number > 3)
-        {
-          System.Console.WriteLine("Tokio gėrimo mūsų meniu nėra");
-        }
-      } while (number >= 1 && number <= 3);
+        Console.WriteLine($"{i + 1}: {gerimai[i]}");
+      }
 
-      System.Console.WriteLine("Jūs pasirinkote: " + number);
+      int number = int.Parse(Console.ReadLine());
+      while (number < 1 || number > 3)
+      {
+        Console.WriteLine("Tokio gėrimo mūsų meniu nėra");
+        number = int.Parse(Console.ReadLine());
+      }
+
+      Console.WriteLine($"Jūs pasirinkote: {gerimai[number - 1]}");
     }
 
     public static void KasTreciasSkaicius(int max)
     {
       for (int i = 0; i <= max; i += 3)
       {
-        System.Console.Write(i + ", ");
+        Console.Write(i + ", ");
       }
     }
 
     public static void Kvadratai()
     {
-      Console.WriteLine("Įveskite mažesnį skaičių:");
+      Console.WriteLine("\nĮveskite mažesnį skaičių:");
       int min = int.Parse(Console.ReadLine());
       Console.WriteLine("Įveskite didesnį skaičių:");
       int max = int.Parse(Console.ReadLine());
       if (min >= max)
       {
-        System.Console.WriteLine("Įvedimo klaida");
+        Console.WriteLine("Įvedimo klaida");
       }
       else
       {
         for (int i = min + 1; i < max; i++)
         {
-          System.Console.WriteLine($"{i} {Math.pow(i, 2)}");
+          Console.WriteLine($"{i} {Math.Pow(i, 2)}");
         }
       }
     }
@@ -60,12 +73,13 @@ namespace CSharpKursai
 
     public static void Fibonacci(int howMany)
     {
-      int fibonacci1 = 0;
-      int fibonacci2 = 1;
-      int temp;
+      int fibonacci1 = 0,
+          fibonacci2 = 1,
+          temp;
+      
       for (int i = 1; i <= howMany; i++)
       {
-        System.Console.WriteLine($"{i}: {fibonacci1};");
+        Console.WriteLine($"Fibonacci #{i}: {fibonacci1};");
         temp = fibonacci1;
         fibonacci1 = fibonacci2;
         fibonacci2 += temp;
@@ -80,7 +94,7 @@ namespace CSharpKursai
         suma += i;
       }
 
-      System.Console.WriteLine(suma);
+      Console.WriteLine(suma);
     }
 
     public static void SumaIki1000Papildymas1()
@@ -91,7 +105,7 @@ namespace CSharpKursai
         if (i % 5 != 0) suma += i;
       }
 
-      System.Console.WriteLine(suma);
+      Console.WriteLine(suma);
     }
 
     public static void SumaIki1000Papildymas2()
@@ -99,11 +113,14 @@ namespace CSharpKursai
       int suma = 0;
       for (int i = 1; i <= 1000; i++)
       {
-        if (i > 123) break;
-        suma += suma;
+        if (i > 123)
+        {
+          break;
+        }
+        suma += i;
       }
 
-      System.Console.WriteLine(suma);
+      Console.WriteLine($"suma iki 123: {suma}");
     }
 
     public static void SumaIki1000Pakeista()
@@ -120,41 +137,142 @@ namespace CSharpKursai
         else break;
       }
 
-      System.Console.WriteLine(suma);
+      Console.WriteLine(suma);
     }
 
     public class AtsitiktiniaiSkaiciai
     {
-      private static void skaitykIvesti()
+      private static int SkaitykIvesti()
       {
-        System.Console.WriteLine("Įveskite skaičių nuo 1 iki 100");
-        int skaicius = System.Console.Read();
+        Console.WriteLine("Įveskite skaičių nuo 1 iki 100");
+        int skaicius = int.Parse(Console.ReadLine());
         return skaicius;
+      }
+      
+      private static int RandomNumber(int min, int max)  
+      {  
+        Random random = new Random();
+        return random.Next(min, max);  
       }
 
       public static void AtspekSkaiciu()
       {
-        int atsSkaicius = new Random().Next(0, 100);
-        int skaicius = skaitykIvesti();
+        int atsSkaicius = RandomNumber(0, 100);
+        Console.WriteLine($"atsSkaicius {atsSkaicius}");
+        int skaicius = SkaitykIvesti();
         bool arTesti = true;
         while (arTesti)
         {
           if (skaicius < atsSkaicius)
           {
-            System.Console.WriteLine("Įvestas skaičius mažesnis už kompiuterio sugalvotą");
-            skaitykIvesti();
+            Console.WriteLine("Įvestas skaičius mažesnis už kompiuterio sugalvotą");
+            skaicius = SkaitykIvesti();
           }
           else if (skaicius > atsSkaicius)
           {
-            System.Console.WriteLine("Įvestas skaičius didesnis už kompiuterio sugalvotą");
-            skaitykIvesti();
+            Console.WriteLine("Įvestas skaičius didesnis už kompiuterio sugalvotą");
+            skaicius = SkaitykIvesti();
           }
           else
           {
-            System.Console.WriteLine($"PERGALĖ!!! Jūsų skaičius - {skaicius}");
+            Console.WriteLine($"PERGALĖ!!! Jūsų ir mūsų skaičius - {skaicius}");
             arTesti = false;
           }
         }
+      }
+    }
+
+    public class Challenge
+    {
+      private static string ReadInput()
+      {
+        Console.WriteLine("Įveskite skaičių:");
+        string input = Console.ReadLine();
+        return input;
+      }
+      
+      private static int CharToInt(char c)
+      {
+        return (c - '0');
+      }
+
+      private static int StringToInt(string str)
+      {
+        if (str[0].Equals('-')) str = str.Replace(str[0], '0');
+        int result = 0;
+        int j = str.Length - 1;
+        for (int i = 0; i < str.Length; i++)
+        {
+          result += CharToInt(str[i]) * 10.Pow(j);
+          j--;
+        }
+        return result;
+      }
+
+      private static bool IsNumeric(string str)
+      {
+        return Regex.IsMatch(str, @"^-?\d+$");
+      }
+
+      public static string Variantas1()
+      {
+        string input = ReadInput();
+        
+        if (!IsNumeric(input))
+        {
+          Console.WriteLine("Įvedimo klaida, galima vesti tik skaičius ir minuso ženklą");
+          return "";
+        }
+        
+        int number = StringToInt(input);
+        string output = "";
+        
+        if (number < -9 || number > 9)
+        {
+          Console.WriteLine("Įvedimo klaida, veskite skaičius nuo -9 iki 9");
+          return "";
+        }
+
+        if (number < 0)
+        {
+          output = "minus ";
+          number = Math.Abs(number);
+        }
+        
+        switch (number)
+        {
+          case 0:
+            return "nulis";
+            break;
+          case 1:
+            output += "vienas";
+            break;
+          case 2:
+            output += "du";
+            break;
+          case 3:
+            output += "trys";
+            break;
+          case 4:
+            output += "keturi";
+            break;
+          case 5:
+            output += "penki";
+            break;
+          case 6:
+            output += "šeši";
+            break;
+          case 7:
+            output += "septyni";
+            break;
+          case 8:
+            output += "aštuoni";
+            break;
+          case 9:
+            output += "devyni";
+            break;
+        }
+        return output;
       }
     }
   }
