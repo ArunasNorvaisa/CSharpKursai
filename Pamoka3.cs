@@ -198,7 +198,12 @@ namespace CSharpKursai
 
       private static int StringToInt(string str)
       {
-        if (str[0].Equals('-')) str = str.Replace(str[0], '0');
+        bool isPositive = true;
+        if (str[0].Equals('-'))
+        {
+          str = str.Replace(str[0], '0');
+          isPositive = false;
+        }
         int result = 0;
         int j = str.Length - 1;
         for (int i = 0; i < str.Length; i++)
@@ -206,6 +211,8 @@ namespace CSharpKursai
           result += CharToInt(str[i]) * 10.Pow(j);
           j--;
         }
+        if (!isPositive) result *= -1;
+
         return result;
       }
 
