@@ -8,10 +8,7 @@ namespace CSharpKursai
     {
       string[] gerimai = {"Kava", "Arbata", "Vanduo"};
       Console.WriteLine("Meniu. Pasirinkite vieną:");
-      for (int i = 0; i < gerimai.Length; i++)
-      {
-        Console.WriteLine($"{i + 1}: {gerimai[i]}");
-      }
+      for (int i = 0; i < gerimai.Length; i++) Console.WriteLine($"{i + 1}: {gerimai[i]}");
 
       int number = int.Parse(Console.ReadLine());
       while (number < 1 || number > 3)
@@ -25,28 +22,21 @@ namespace CSharpKursai
 
     public static void KasTreciasSkaicius(int max)
     {
-      for (int i = 0; i <= max; i += 3)
-      {
-        Console.Write(i + ", ");
-      }
+      for (int i = 0; i <= max; i += 3) Console.Write(i + ", ");
     }
 
     public static void Kvadratai()
     {
       Console.WriteLine("\nĮveskite mažesnį skaičių:");
       int min = int.Parse(Console.ReadLine());
+      
       Console.WriteLine("Įveskite didesnį skaičių:");
       int max = int.Parse(Console.ReadLine());
-      if (min >= max)
-      {
-        Console.WriteLine("Įvedimo klaida");
-      }
+      
+      if (min >= max) Console.WriteLine("Įvedimo klaida");
       else
       {
-        for (int i = min + 1; i < max; i++)
-        {
-          Console.WriteLine($"{i} {Math.Pow(i, 2)}");
-        }
+        for (int i = min + 1; i < max; i++) Console.WriteLine($"{i} {Math.Pow(i, 2)}");
       }
     }
 
@@ -79,11 +69,7 @@ namespace CSharpKursai
     public static void SumaIki1000()
     {
       int suma = 0;
-      for (int i = 1; i <= 1000; i++)
-      {
-        suma += i;
-      }
-
+      for (int i = 1; i <= 1000; i++) suma += i;
       Console.WriteLine(suma);
     }
 
@@ -103,10 +89,8 @@ namespace CSharpKursai
       int suma = 0;
       for (int i = 1; i <= 1000; i++)
       {
-        if (i > 123)
-        {
-          break;
-        }
+        if (i > 123) break;
+        
         suma += i;
       }
 
@@ -117,6 +101,7 @@ namespace CSharpKursai
     {
       int suma = 0;
       int i = 1;
+      
       for (;;)
       {
         if (i <= 1000)

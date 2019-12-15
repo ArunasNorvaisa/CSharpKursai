@@ -19,10 +19,7 @@ namespace CSharpKursai
       return input;
     }
     
-    private static int CharToInt(char c)
-    {
-      return c - '0';
-    }
+    private static int CharToInt(char c) => c - '0';
 
     private static int StringToInt(string str)
     {
@@ -44,10 +41,7 @@ namespace CSharpKursai
       return result;
     }
 
-    private static bool IsNumeric(string str)
-    {
-      return Regex.IsMatch(str, @"^-?\d+$");
-    }
+    private static bool IsNumeric(string str) => Regex.IsMatch(str, @"^-?\d+$");
 
     public static string Variantas1()
     {
