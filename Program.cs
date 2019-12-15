@@ -23,8 +23,8 @@ namespace CSharpKursai
       Pamoka3.SumaIki1000Papildymas1();
       Pamoka3.SumaIki1000Papildymas2();
       Pamoka3.SumaIki1000Pakeista();
-      Console.WriteLine(Pamoka3.Challenge.Variantas1());
-      Pamoka3.AtsitiktiniaiSkaiciai.AtspekSkaiciu();
+      Console.WriteLine(Challenge.Variantas1());
+      AtsitiktiniaiSkaiciai.AtspekSkaiciu();
     }
   }
 }
