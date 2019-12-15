@@ -14,7 +14,7 @@ namespace CSharpKursai
     }
     private static string ReadInput()
     {
-      Console.WriteLine("Įveskite skaičių:");
+      Console.WriteLine("Įveskite skaičių nuo -9 iki 9:");
       string input = Console.ReadLine();
       return input;
     }
