@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleTodoListApp.Utils;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,23 +14,35 @@ namespace ConsoleTodoListApp.Gui
             this.drawCharacter = drawCharacter;
         }
 
+        public void ChangeDrawCharacter(char drawCharacter)
+        {
+            this.drawCharacter = drawCharacter;
+            DrawFrame();
+        }
+
         public override void Draw()
+        {
+            DrawBackground();
+            DrawFrame();
+        }
+
+        private void DrawFrame()
         {
             for (int j = 0; j < Height; j++)
             {
-                Console.SetCursorPosition(X, Y + j);
                 for (int i = 0; i < Width; i++)
                 {
                     if (j == 0 || j == Height - 1 || i == 0 || i == Width - 1)
                     {
-                        Console.Write(drawCharacter);
-                    }
-                    else
-                    {
-                        Console.Write(' ');
+                        ConsoleUtil.Draw(X + i, Y + j, drawCharacter);
                     }
                 }
             }
+        }
+
+        private void DrawBackground()
+        {
+            ConsoleUtil.FillArea(X + 1, Y + 1, Width - 2, Height - 2);
         }
     }
 }

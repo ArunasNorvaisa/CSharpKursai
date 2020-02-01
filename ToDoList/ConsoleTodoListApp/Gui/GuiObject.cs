@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ConsoleTodoListApp.Gui.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleTodoListApp.Gui
 {
-    abstract class GuiObject
+    abstract class GuiObject : IDrawable
     {
         protected int X { get; set; }
         protected int Y { get; set; }
